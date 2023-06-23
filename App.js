@@ -30,7 +30,6 @@ export default function App() {
     <NavigationContainer>
       <Authenticator.Provider>
         <Authenticator  Header={AppHeader}>
-
           <AuthContextProvider>
             <CartContextProvider>
               <OrderContextProvider>
@@ -39,7 +38,6 @@ export default function App() {
               </OrderContextProvider>
             </CartContextProvider>
           </AuthContextProvider>
-
         </Authenticator>
       </Authenticator.Provider>
     </NavigationContainer>
