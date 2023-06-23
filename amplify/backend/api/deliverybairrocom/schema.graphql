@@ -1,0 +1,150 @@
+type OrderDish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Qtd: Int
+  orderID: ID! @index(name: "byOrder")
+  produtoID: ID! @index(name: "byProduto")
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  SubTotal: Float
+  TaxaEntrega: Float
+  Total: Float
+  Status: OrderStatus
+  TokenSMS: String
+  OrderDishes: [OrderDish] @hasMany(indexName: "byOrder", fields: ["id"])
+  deliveryID: ID! @index(name: "byDelivery")
+  courierID: ID! @index(name: "byCourier")
+  userID: ID! @index(name: "byUser")
+  Latitude: Float
+  Longitude: Float
+}
+
+enum Transporte {
+  DRIVING
+  BICYCLING
+}
+
+type Courier @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Nome: String!
+  Cpf: String!
+  Telefone: String!
+  Tipo: Transporte!
+  UrlFoto: String
+  TokenSMS: String
+  Orders: [Order] @hasMany(indexName: "byCourier", fields: ["id"])
+  Latitude: Float
+  Longitude: Float
+}
+
+enum OrderStatus {
+  NOVO
+  AGUARDANDO
+  PREPARANDO
+  PRONTO_PARA_RETIRADA
+  SAIU_PARA_ENTREGA
+  RECEBIDO
+  FINALIZADO
+  CANCELADO
+}
+
+type Produto @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Nome: String!
+  Descricao: String!
+  VrUnitario: String
+  UrlFoto: String
+  ProdutoDeliveries: [Delivery] @manyToMany(relationName: "ProdutoDelivery")
+  OrderDishes: [OrderDish] @hasMany(indexName: "byProduto", fields: ["id"])
+}
+
+enum Situacao {
+  ATIVO
+  INATIVO
+}
+
+enum Plano {
+  FREE
+  BASIC
+  PRO
+  PREMIUM
+}
+
+type Delivery @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Nome: String!
+  PlanoAssinatura: Plano!
+  Situacao: Situacao!
+  Responsavel: String
+  Telefone: String
+  Email: String
+  Horario: String
+  MinDeliveryTime: Int
+  MaxDeliveryTime: Int
+  Rating: Float
+  TaxaEntrega: Float
+  UrlFoto: String
+  Endereco: String
+  Numero: String
+  Complemento: String
+  Bairro: String
+  Cidade: String
+  UF: UF
+  Categorias: [Categoria] @manyToMany(relationName: "CategoriaDelivery")
+  Produtos: [Produto] @manyToMany(relationName: "ProdutoDelivery")
+  Orders: [Order] @hasMany(indexName: "byDelivery", fields: ["id"])
+  Latitude: Float
+  Longitude: Float
+}
+
+type Categoria @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Descricao: String!
+  UrlFoto: String
+  Ordem: String
+  Deliveries: [Delivery] @manyToMany(relationName: "CategoriaDelivery")
+}
+
+enum UF {
+  AC
+  AL
+  AP
+  AM
+  BA
+  CE
+  DF
+  ES
+  GO
+  MA
+  MG
+  MT
+  MS
+  PA
+  PB
+  PE
+  PI
+  PR
+  RJ
+  RN
+  RS
+  RO
+  RR
+  SC
+  SE
+  SP
+  TO
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Nome: String!
+  Sobrenome: String!
+  UrlFoto: String
+  Token: String
+  Telefone: String
+  Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+  Latitude: Float
+  Longitude: Float
+}
+ 

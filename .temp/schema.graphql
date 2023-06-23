@@ -1,0 +1,170 @@
+enum Transporte {
+  DRIVING
+  BICYCLING
+}
+
+type Courier @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Nome: String!
+  Cpf: String!
+  Telefone: String!
+  Tipo: Transporte!
+  UrlFoto: String
+  TokenSMS: String
+  Latitude: Float!
+  Longitude: Float!
+  Endereco: String
+  Numero: String
+  Complemento: String
+  Bairro: String
+  Cidade: String
+  UF: UF
+}
+
+type OrderDish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Qtd: Int
+  orderID: ID! @index(name: "byOrder")
+  Produto: Produto @hasOne
+}
+
+enum OrderStatus {
+  NOVO
+  AGUARDANDO
+  PREPARANDO
+  PRONTO_PARA_RETIRADA
+  SAIU_PARA_ENTREGA
+  RECEBIDO
+  FINALIZADO
+  CANCELADO
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  SubTotal: Float
+  TaxaEntrega: Float
+  Total: Float
+  Status: OrderStatus
+  TokenSMS: String
+  OrderDishes: [OrderDish] @hasMany(indexName: "byOrder", fields: ["id"])
+  Delivery: Delivery @hasOne
+  Courier: Courier @hasOne
+}
+
+type BasketDish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Qtd: Int
+  Produto: Produto @hasOne
+  basketID: ID! @index(name: "byBasket")
+}
+
+type Basket @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  deliveryID: ID! @index(name: "byDelivery")
+  userID: ID! @index(name: "byUser")
+  BasketDishes: [BasketDish] @hasMany(indexName: "byBasket", fields: ["id"])
+}
+
+type Produto @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Nome: String!
+  Descricao: String!
+  VrUnitario: String
+  UrlFoto: String
+  ProdutoDeliveries: [Delivery] @manyToMany(relationName: "ProdutoDelivery")
+}
+
+enum Situacao {
+  ATIVO
+  INATIVO
+}
+
+enum Plano {
+  FREE
+  BASIC
+  PRO
+  PREMIUM
+}
+
+type Delivery @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Nome: String!
+  PlanoAssinatura: Plano!
+  Situacao: Situacao!
+  Responsavel: String
+  Telefone: String
+  Email: String
+  Horario: String
+  MinDeliveryTime: Int
+  MaxDeliveryTime: Int
+  Rating: Float
+  TaxaEntrega: Float
+  UrlFoto: String
+  Latitude: Float!
+  Longitude: Float!
+  Endereco: String
+  Numero: String
+  Complemento: String
+  Bairro: String
+  Cidade: String
+  UF: UF
+  Baskets: [Basket] @hasMany(indexName: "byDelivery", fields: ["id"])
+  Categorias: [Categoria] @manyToMany(relationName: "CategoriaDelivery")
+  Produtos: [Produto] @manyToMany(relationName: "ProdutoDelivery")
+}
+
+type Categoria @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Descricao: String!
+  UrlFoto: String
+  Ordem: Int
+  Deliveries: [Delivery] @manyToMany(relationName: "CategoriaDelivery")
+}
+
+enum UF {
+  AC
+  AL
+  AP
+  AM
+  BA
+  CE
+  DF
+  ES
+  GO
+  MA
+  MG
+  MT
+  MS
+  PA
+  PB
+  PE
+  PI
+  PR
+  RJ
+  RN
+  RS
+  RO
+  RR
+  SC
+  SE
+  SP
+  TO
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Nome: String!
+  Sobrenome: String!
+  UrlFoto: String
+  Token: String
+  Latitude: Float!
+  Longitude: Float!
+  Endereco: String
+  Numero: String
+  Complemento: String
+  Bairro: String
+  Cidade: String
+  UF: UF
+  Baskets: [Basket] @hasMany(indexName: "byUser", fields: ["id"])
+}
+ 

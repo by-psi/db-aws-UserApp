@@ -1,0 +1,23 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-deliverybairrocom-staging-155845-authRole",
+      "UnauthRoleArn": "arn:aws:iam::531685355327:role/amplify-deliverybairrocom-staging-155845-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::531685355327:role/amplify-deliverybairrocom-staging-155845-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-deliverybairrocom-staging-155845-deployment",
+      "UnauthRoleName": "amplify-deliverybairrocom-staging-155845-unauthRole",
+      "StackName": "amplify-deliverybairrocom-staging-155845",
+      "StackId": "arn:aws:cloudformation:us-east-1:531685355327:stack/amplify-deliverybairrocom-staging-155845/853b9a40-0227-11ee-ac9f-0a5be241f88d",
+      "AmplifyAppId": "d26ashjmoqmvwx"
+    },
+    "categories": {
+      "auth": {
+        "deliverybairrocom": {}
+      },
+      "storage": {
+        "s3deliverybairrocomstorage": {}
+      }
+    }
+  }
+}
