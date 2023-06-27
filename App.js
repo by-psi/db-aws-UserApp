@@ -73,7 +73,7 @@ function AppHeader() {
     <View style={styles.container}>
       <Image source={ logo } style={styles.logo} resizeMode="contain" />
       <Image source={ marca } style={styles.marca} resizeMode="contain" />
-      <Text>UserApp</Text>
+      <Text>User App</Text>
     </View>
   );
 };
