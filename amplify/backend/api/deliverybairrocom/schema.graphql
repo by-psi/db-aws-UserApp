@@ -75,10 +75,8 @@ type Delivery @model @auth(rules: [{allow: public}]) {
   id: ID!
   Nome: String!
   PlanoAssinatura: Plano!
-  Situacao: Situacao!
   Responsavel: String
   Telefone: String
-  Email: String
   Horario: String
   MinDeliveryTime: Int
   MaxDeliveryTime: Int
@@ -86,16 +84,12 @@ type Delivery @model @auth(rules: [{allow: public}]) {
   TaxaEntrega: Float
   UrlFoto: String
   Endereco: String
-  Numero: String
-  Complemento: String
-  Bairro: String
-  Cidade: String
-  UF: UF
   Categorias: [Categoria] @manyToMany(relationName: "CategoriaDelivery")
   Produtos: [Produto] @manyToMany(relationName: "ProdutoDelivery")
   Orders: [Order] @hasMany(indexName: "byDelivery", fields: ["id"])
   Latitude: Float
   Longitude: Float
+  TokenADM: String
 }
 
 type Categoria @model @auth(rules: [{allow: public}]) {
@@ -144,6 +138,7 @@ type User @model @auth(rules: [{allow: public}]) {
   Token: String
   Telefone: String
   Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+  Endereco: String
   Latitude: Float
   Longitude: Float
 }

@@ -232,10 +232,8 @@ type EagerDelivery = {
   readonly id: string;
   readonly Nome: string;
   readonly PlanoAssinatura: Plano | keyof typeof Plano;
-  readonly Situacao: Situacao | keyof typeof Situacao;
   readonly Responsavel?: string | null;
   readonly Telefone?: string | null;
-  readonly Email?: string | null;
   readonly Horario?: string | null;
   readonly MinDeliveryTime?: number | null;
   readonly MaxDeliveryTime?: number | null;
@@ -243,16 +241,12 @@ type EagerDelivery = {
   readonly TaxaEntrega?: number | null;
   readonly UrlFoto?: string | null;
   readonly Endereco?: string | null;
-  readonly Numero?: string | null;
-  readonly Complemento?: string | null;
-  readonly Bairro?: string | null;
-  readonly Cidade?: string | null;
-  readonly UF?: Uf | keyof typeof Uf | null;
   readonly Categorias?: (CategoriaDelivery | null)[] | null;
   readonly Produtos?: (ProdutoDelivery | null)[] | null;
   readonly Orders?: (Order | null)[] | null;
   readonly Latitude?: number | null;
   readonly Longitude?: number | null;
+  readonly TokenADM?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -265,10 +259,8 @@ type LazyDelivery = {
   readonly id: string;
   readonly Nome: string;
   readonly PlanoAssinatura: Plano | keyof typeof Plano;
-  readonly Situacao: Situacao | keyof typeof Situacao;
   readonly Responsavel?: string | null;
   readonly Telefone?: string | null;
-  readonly Email?: string | null;
   readonly Horario?: string | null;
   readonly MinDeliveryTime?: number | null;
   readonly MaxDeliveryTime?: number | null;
@@ -276,16 +268,12 @@ type LazyDelivery = {
   readonly TaxaEntrega?: number | null;
   readonly UrlFoto?: string | null;
   readonly Endereco?: string | null;
-  readonly Numero?: string | null;
-  readonly Complemento?: string | null;
-  readonly Bairro?: string | null;
-  readonly Cidade?: string | null;
-  readonly UF?: Uf | keyof typeof Uf | null;
   readonly Categorias: AsyncCollection<CategoriaDelivery>;
   readonly Produtos: AsyncCollection<ProdutoDelivery>;
   readonly Orders: AsyncCollection<Order>;
   readonly Latitude?: number | null;
   readonly Longitude?: number | null;
+  readonly TokenADM?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -342,6 +330,7 @@ type EagerUser = {
   readonly Token?: string | null;
   readonly Telefone?: string | null;
   readonly Orders?: (Order | null)[] | null;
+  readonly Endereco?: string | null;
   readonly Latitude?: number | null;
   readonly Longitude?: number | null;
   readonly createdAt?: string | null;
@@ -360,6 +349,7 @@ type LazyUser = {
   readonly Token?: string | null;
   readonly Telefone?: string | null;
   readonly Orders: AsyncCollection<Order>;
+  readonly Endereco?: string | null;
   readonly Latitude?: number | null;
   readonly Longitude?: number | null;
   readonly createdAt?: string | null;

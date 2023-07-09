@@ -522,15 +522,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Situacao": {
-                    "name": "Situacao",
-                    "isArray": false,
-                    "type": {
-                        "enum": "Situacao"
-                    },
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "Responsavel": {
                     "name": "Responsavel",
                     "isArray": false,
@@ -540,13 +531,6 @@ export const schema = {
                 },
                 "Telefone": {
                     "name": "Telefone",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Email": {
-                    "name": "Email",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -598,43 +582,6 @@ export const schema = {
                     "name": "Endereco",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Numero": {
-                    "name": "Numero",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Complemento": {
-                    "name": "Complemento",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Bairro": {
-                    "name": "Bairro",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Cidade": {
-                    "name": "Cidade",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "UF": {
-                    "name": "UF",
-                    "isArray": false,
-                    "type": {
-                        "enum": "Uf"
-                    },
                     "isRequired": false,
                     "attributes": []
                 },
@@ -697,6 +644,13 @@ export const schema = {
                     "name": "Longitude",
                     "isArray": false,
                     "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "TokenADM": {
+                    "name": "TokenADM",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -891,6 +845,13 @@ export const schema = {
                             "userID"
                         ]
                     }
+                },
+                "Endereco": {
+                    "name": "Endereco",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "Latitude": {
                     "name": "Latitude",
@@ -1217,5 +1178,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "2b2ab0ee3bfa3a8d7d582572b3b5c685"
+    "version": "d5b59fdbec3999754152aa3bde421d6a"
 };
