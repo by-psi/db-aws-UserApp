@@ -3,8 +3,7 @@
 */
 
 import MapView, { Marker } from "react-native-maps";
-import { useContext } from "react";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import { OrderContext } from '../../contexts/OrderContext';
